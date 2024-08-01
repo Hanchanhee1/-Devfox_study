@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 会員mapper -->
+  
+<mapper namespace="com.chanhee.member">
+
+	<insert id="write" parameterType="member">
+	
+		insert into han_member (id,pw,name,gender,tel,birth) values (#{id},#{pw},#{name},#{gender},#{tel},#{birth})
+	
+	</insert>
+	
+	<select id="login" resultType="String">
+	
+		select * from han_member where id = #{id} and pw = #{pw}
+	
+	</select>
+
+</mapper>
