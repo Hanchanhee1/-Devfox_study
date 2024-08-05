@@ -59,7 +59,7 @@
                                value="삭제">
                         <button type="button" class="btn btn-danger btn-lg"
                                 onclick="location.href='/project/board/list'">
-                            <i class="fa fa-fw fa-close"></i> 목록
+                            <i class="fa fa-fw fa-close"></i> 목록.
                         </button>
                     </div>
                 </div>

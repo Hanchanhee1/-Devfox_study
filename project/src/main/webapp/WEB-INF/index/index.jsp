@@ -39,7 +39,7 @@
 	</c:choose>
 	</nav>
 	<section>
-		<H2>스프링 프레임워크를 이용한 게시판 만들기 프로젝트 입니다.</H2>
+		<H2>스프링 프레임워크를 이용한 게시판 만들기 프로젝트 입니다..</H2>
 		<H3 style="text-align:center;"><%= session.getAttribute("id") %>님 환영합니다.</H3>
 		<c:choose>
 		<c:when test="${sessionScope.id == null }">

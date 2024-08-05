@@ -77,7 +77,7 @@
                         </c:if>
                         <c:if test="${sessionScope.id != board.id}">
                             <script type="text/javascript">
-                                alert("수정할 수 없습니다. 아이디를 확인해주세요");
+                                alert("수정할 수 없습니다. 아이디를 확인해주세요.");
                                 window.location.href = "/project/board/list";
                             </script>
                         </c:if>
