@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.chanhee.util.Criteria;
+
 @Service
 public class BoardServiceImpl implements BoardService {
 	
@@ -41,22 +43,25 @@ public class BoardServiceImpl implements BoardService {
 		return dao.delete(board_no);
 	}
 
-//	@Override
-//	public List<BoardDTO> search(String data) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<BoardDTO> search(String tag, String data) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<BoardDTO> findByCategory(String category) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public List<BoardDTO> Paging(Criteria cri) {
+		return dao.Paging(cri);
+	}
+
+	@Override
+	public int TotalCount(Criteria cri) {
+		return dao.TotalCount(cri);
+	}
+
+	@Override
+	public BoardDTO prev(String board_no) {
+		return dao.prev(board_no);
+	}
+
+	@Override
+	public BoardDTO next(String board_no) {
+		return dao.next(board_no);
+	}
+
 
 }

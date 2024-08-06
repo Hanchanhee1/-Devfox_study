@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.chanhee.util.Criteria;
+import com.chanhee.util.PageDTO;
 
 // 掲示板 Controller
 
@@ -23,10 +27,16 @@ public class BoardController {
 	
 	// 掲示板照会
 	@RequestMapping("/board/list")
-	public String list(Model model) {
-		List<BoardDTO> list = boardService.boardList();
+	public String list(Criteria cri, Model model ,@RequestParam(value="type", required=false) String type,@RequestParam(value="keyword", required=false) String keyword) {
+		
+		System.out.println("cri" + cri);
+		
+		List<BoardDTO> list = boardService.Paging(cri);
+		int total = boardService.TotalCount(cri);
 		System.out.println(list);
 		model.addAttribute("boardlist", list);
+		model.addAttribute("total",total);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		return "board/boardlist";
 	}
 	
@@ -44,9 +54,13 @@ public class BoardController {
 	
 	// 掲示板読み
 	@RequestMapping("/board/read")
-	public String read(String board_no, String state, Model model) {
+	public String read(@RequestParam("board_no") String board_no, String state, Model model) {
 		BoardDTO board = boardService.getBoardInfo(board_no);
+		BoardDTO next = boardService.next(board_no);
+		BoardDTO prev = boardService.prev(board_no);
 		model.addAttribute("board",board);
+		model.addAttribute("next", next);
+		model.addAttribute("prev", prev);
 		return "board/boardread";
 	}
 	

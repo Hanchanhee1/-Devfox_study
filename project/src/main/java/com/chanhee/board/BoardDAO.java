@@ -3,6 +3,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.chanhee.util.Criteria;
+
 // mybatisのSqlSessionを利用して作業
 public interface BoardDAO {
 	
@@ -16,11 +18,14 @@ public interface BoardDAO {
 	int update(BoardDTO board);
 	// 掲示板削除
 	int delete(String board_no);
-	
-	// 検索
-//	List<BoardDTO> search(String data);
-//	List<BoardDTO> search(String tag,String data);
-//	List<BoardDTO> findByCategory(String category);
+	// ページング処理
+	List<BoardDTO> Paging(Criteria cri);
+	// ページング処理
+	int TotalCount(Criteria cri);
+	// 前の掲示板
+	BoardDTO prev(String board_no);
+	// 次の掲示板
+	BoardDTO next(String board_no);
 	
 }
 

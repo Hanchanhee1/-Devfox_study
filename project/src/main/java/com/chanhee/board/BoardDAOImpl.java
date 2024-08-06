@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.chanhee.util.Criteria;
+
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 	
@@ -42,22 +44,24 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.delete("com.chanhee.board.delete", board_no);
 	}
 
-//	@Override
-//	public List<BoardDTO> search(String data) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<BoardDTO> search(String tag, String data) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<BoardDTO> findByCategory(String category) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public List<BoardDTO> Paging(Criteria cri) {
+		return sqlSession.selectList("com.chanhee.board.Paging", cri);
+	}
+
+	@Override
+	public int TotalCount(Criteria cri) {
+		return sqlSession.selectOne("com.chanhee.board.TotalCount", cri);
+	}
+
+	@Override
+	public BoardDTO prev(String board_no) {
+		return sqlSession.selectOne("com.chanhee.board.prev", board_no);
+	}
+
+	@Override
+	public BoardDTO next(String board_no) {
+		return sqlSession.selectOne("com.chanhee.board.next", board_no);
+	}
 
 }

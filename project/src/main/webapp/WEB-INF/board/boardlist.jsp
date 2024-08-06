@@ -19,6 +19,24 @@
 <body>
 	<h1>게시판</h1>
 		<a href="/project/">홈으로</a>
+		<p>총게시글<span>${pageMaker.total}</span>건</p>
+	<form method="get" id="searchForm" action="/project/board/list">
+		<select name="type">
+			<option value="id" <c:if test="${pageMaker.cri.type == 'id'}">selected</c:if>>아이디</option>
+            <option value="title" <c:if test="${pageMaker.cri.type == 'title'}">selected</c:if>>제목</option>
+            <option value="content" <c:if test="${pageMaker.cri.type == 'content'}">selected</c:if>>내용</option>
+		</select>
+		<input type="text" name="keyword" value="${pageMaker.cri.keyword}">
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+  		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<button class="btn btn-default">검색</button>
+	</form>
+	<form id="actionForm" action="/project/board/list" method="get"> 
+      <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
+      <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+    	<input type="hidden" name="type" value="${ pageMaker.cri.type }"> 
+    	<input type="hidden" name="keyword" value="${ pageMaker.cri.keyword }">
+    </form>
 		<table class="table">
 			<thead>
 				<tr>
@@ -40,16 +58,19 @@
 				</c:forEach>
 			</tbody>
 		</table>
-	<form action="/project/board/search" method="post">
-		<select name="tag">
-			<option value="id">작성자</option>
-			<option value="title">제목</option>
-			<option value="content">내용</option>
-		</select> <input type="text" name="search" /> <input type="submit" value="검색">
-		<ul class="nav navbar-nav navbar-right">
+
+	<ul class="nav navbar-nav navbar-right">
 			<li><a href="/project/board/write" style="text-align: right;">글쓰기</a></li>
-		</ul>
-	</form>
+	</ul>
+	<div class="paging">
+			<a href=""><i class="fa  fa-angle-double-left"></i></a>
+			<a href=""><i class="fa fa-angle-left"></i></a>
+			<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+			<a href="/project/board/list?pageNum=${num}&amount=${pageMaker.cri.amount}" class="${pageMaker.cri.pageNum == num?'active':''}">${num }</a>
+			</c:forEach>
+			<a href=""><i class="fa fa-angle-right"></i></a>
+			<a href=""><i class="fa  fa-angle-double-right"></i></a>
+		</div>
 
 </body>
 </html>

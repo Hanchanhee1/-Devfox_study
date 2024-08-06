@@ -53,5 +53,6 @@
 	<context:component-scan base-package="mapper" />
 	<context:component-scan base-package="com.chanhee.board" />
 	<context:component-scan base-package="com.chanhee.member" />
+	<context:component-scan base-package="com.chanhee.util" />
 	
 </beans:beans>

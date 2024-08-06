@@ -3,38 +3,96 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 掲示板 mapper  -->
+<!-- 掲示板 mapper -->
 
 <mapper namespace="com.chanhee.board">
 
+	<sql id="criteria">
+		<choose>
+			<when test="type== 'id'.toString()">
+				(id like '%'||#{keyword}||'%') and
+			</when>
+			<when test="type== 'title'.toString()">
+				(title like '%'||#{keyword}||'%') and
+			</when>
+			<when test="type=='content'.toString()">
+				(content like '%'||#{keyword}||'%') and
+			</when>
+		</choose>
+	</sql>
+
 	<select id="selectall" resultType="board">
-	
+
 		select * from han_board order by board_no asc
-	
+
 	</select>
-	
+
 	<insert id="write" parameterType="board">
-	
-		insert into han_board (board_no,id,title,content) values (han_borad_seq.nextval,#{id},#{title},#{content})
-	
+
+		insert into han_board (board_no,id,title,content) values
+		(han_borad_seq.nextval,#{id},#{title},#{content})
+
 	</insert>
-	
+
 	<select id="read" parameterType="String" resultType="board">
-	
+
 		select * from han_board where board_no = #{board_no}
-	
+
 	</select>
-	
+
 	<delete id="delete" parameterType="board">
-	
+
 		delete han_board where board_no = #{board_no}
-	
+
 	</delete>
-	
+
 	<update id="update" parameterType="board">
-	
-		update han_board set title = #{title} , content = #{content} where board_no = #{board_no}
-	
+
+		update han_board set title = #{title} , content = #{content} where board_no
+		= #{board_no}
+
 	</update>
+
+	<select id="Paging" resultType="board">
+		<![CDATA[
+			select board_no,id,title,content from (select /*+ index_desc (han_board han_board_pk) */
+			rownum rn,board_no,id,title,content
+			from han_board 
+			where
+			]]>
+			
+			<include refid="criteria"></include>
+			
+		<![CDATA[	
+			rownum <= #{pageNum} * #{amount})
+			where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+
+	<select id="TotalCount" resultType="int">
+	
+		select count(*) from han_board where <include refid="criteria"></include>
+		<![CDATA[	
+			board_no > 0
+		]]>
+
+	</select>
+
+	<select id="prev" resultType="board">
+	
+		<![CDATA[
+			select * from han_board where board_no = (select max(board_no) from han_board where board_no < #{board_no})
+		]]>
+
+	</select>
+
+	<select id="next" resultType="board">
+	
+		<![CDATA[
+			select * from han_board where board_no = (select min(board_no) from han_board where board_no > #{board_no})
+		]]>
+
+	</select>
+
 
 </mapper>

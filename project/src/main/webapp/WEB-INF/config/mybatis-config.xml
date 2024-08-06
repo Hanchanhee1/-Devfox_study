@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="com.chanhee.board.BoardDTO" alias="board"/>
 		<typeAlias type="com.chanhee.member.MemberDTO" alias="member"/>
+		<typeAlias type="com.chanhee.util.Criteria" alias="seach"/>
 	</typeAliases>
 	
 	<mappers>
