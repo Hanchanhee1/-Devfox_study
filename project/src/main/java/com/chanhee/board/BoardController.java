@@ -54,7 +54,7 @@ public class BoardController {
 	
 	// 掲示板読み
 	@RequestMapping("/board/read")
-	public String read(@RequestParam("board_no") String board_no, String state, Model model) {
+	public String read(@RequestParam("board_no") String board_no, BoardDTO boardDTO, String state, Model model) {
 		BoardDTO board = boardService.getBoardInfo(board_no);
 		BoardDTO next = boardService.next(board_no);
 		BoardDTO prev = boardService.prev(board_no);

@@ -55,8 +55,8 @@
 
 	<select id="Paging" resultType="board">
 		<![CDATA[
-			select board_no,id,title,content from (select /*+ index_desc (han_board han_board_pk) */
-			rownum rn,board_no,id,title,content
+			select board_no,id,title,content,riplycount from (select /*+ index_desc (han_board han_board_pk) */
+			rownum rn,board_no,id,title,content,(select count(*) from han_riply where board_no = board_no) as riplycount
 			from han_board 
 			where
 			]]>

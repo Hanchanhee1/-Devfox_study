@@ -12,25 +12,29 @@ public class BoardDTO {
 	String id;
 	String title;
 	String content;
+	
+	int riplycount;
 
 	public BoardDTO() {
 		
 	}
-	public BoardDTO(String board_no, String id, String title, String content) {
+	public BoardDTO(String board_no, String id, String title, String content, int riplycount) {
 		super();
 		this.board_no = board_no;
 		this.id = id;
 		this.title = title;
 		this.content = content;
+		this.riplycount = riplycount;
 	}
 	
 	public BoardDTO(String board_no, String id, String title, String content,
-			List<MultipartFile> files) {
+			List<MultipartFile> files, int riplycount) {
 		super();
 		this.board_no = board_no;
 		this.id = id;
 		this.title = title;
 		this.content = content;
+		this.riplycount = riplycount;
 	}
 	
 	@Override
@@ -64,6 +68,12 @@ public class BoardDTO {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public int getRiplycount() {
+		return riplycount;
+	}
+	public void setRiplycount(int riplycount) {
+		this.riplycount = riplycount;
 	}
 	
 }

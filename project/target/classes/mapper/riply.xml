@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- コメントmapper -->
+  
+<mapper namespace="com.chanhee.riply">
+
+	<select id="read" resultType="riply">
+	
+		select DISTINCT b.riply_no, b.id, b.riply_content, b.board_no
+		from han_board a, han_riply b
+		where a.id = b.id and b.board_no = #{board_no} 
+		order by riply_no asc
+	
+	</select>
+	
+	<insert id="create" parameterType="riply">
+	
+		insert into han_riply (riply_no,id,riply_content,board_no) values (han_riply_seq.nextval,#{id},#{riply_content},#{board_no})
+	
+	</insert>
+	
+	<update id="update" parameterType="riply">
+	
+		update han_riply set riply_content = #{riply_content} where riply_no = #{riply_no}
+	
+	</update>
+	
+	<delete id="delete" parameterType="riply">
+	
+		delete han_riply where riply_no = #{riply_no}
+	
+	</delete>
+	
+	<select id="detail" resultType="riply">
+	
+		select * from han_riply where riply_no = #{riply_no}
+	
+	</select>
+
+</mapper>

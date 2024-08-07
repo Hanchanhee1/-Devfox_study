@@ -50,8 +50,9 @@
 				<c:forEach var="board" items="${boardlist }">
 					<tr>
 						<td>${board.board_no }</td>
-						<td><a
-							href="/project/board/read?board_no=${board.board_no }&state=READ">${board.title }</a></td>
+						<td>
+						<a href="/project/board/read?board_no=${board.board_no }&state=READ">${board.title }</a>
+						</td>
 						<td>${board.id }</td>
 						<td>${board.content}</td>
 					</tr>

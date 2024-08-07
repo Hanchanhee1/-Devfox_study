@@ -12,11 +12,13 @@
 		<typeAlias type="com.chanhee.board.BoardDTO" alias="board"/>
 		<typeAlias type="com.chanhee.member.MemberDTO" alias="member"/>
 		<typeAlias type="com.chanhee.util.Criteria" alias="seach"/>
+		<typeAlias type="com.chanhee.riply.RiplyDTO" alias="riply"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/board.xml"/>
 		<mapper resource="mapper/member.xml"/>
+		<mapper resource="mapper/riply.xml"/>
 	</mappers>
 
 </configuration>
