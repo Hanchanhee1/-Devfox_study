@@ -11,8 +11,6 @@ public interface MemberDAO {
 	int insert(MemberDTO member);
 	// 会員全体検索
 	List<MemberDTO> memberlist();
-	// 会員1名検索
-	MemberDTO read(String id);
 	// 会員修正
 	int update(MemberDTO member);
 	// 会員削除
@@ -21,5 +19,6 @@ public interface MemberDAO {
 	String login(MemberDTO member);
 	// ログアウト
 	void logout(HttpSession session);
-	
+	// 会員検索
+	MemberDTO findByid(String id);
 }

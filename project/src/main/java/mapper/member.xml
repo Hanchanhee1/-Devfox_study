@@ -18,5 +18,23 @@
 		select * from han_member where id = #{id} and pw = #{pw}
 	
 	</select>
+	
+	<select id="findid" parameterType="String" resultType="member">
+	
+		select * from han_member where id = #{id}
+	
+	</select>
+	
+	<update id="update" parameterType="member">
+	
+		update han_member set pw = #{pw}, name = #{name}, gender = #{gender}, tel = #{tel}, birth = #{birth} where id = #{id}
+	
+	</update>
+	
+	<delete id="delete" parameterType="member">
+	
+		delete han_member where id = #{id}
+	
+	</delete>
 
 </mapper>

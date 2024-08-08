@@ -33,21 +33,13 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberDTO read(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int update(MemberDTO member) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("com.chanhee.member.update", member);
 	}
 
 	@Override
 	public int delete(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("com.chanhee.member.delete", id);
 	}
 
 	@Override
@@ -58,6 +50,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void logout(HttpSession session) {
 		session.invalidate();
+	}
+
+	@Override
+	public MemberDTO findByid(String id) {
+		return sqlSession.selectOne("com.chanhee.member.findid", id);
 	}
 
 

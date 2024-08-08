@@ -37,7 +37,7 @@
 						</div>
 						<div class="col-md-8">${board.board_no }</div>
 					</div>
-					<input type="hidden" name="board_no" value="${board.board_no }">
+					<input type="hidden" name="board_no" value="${board.board_no }" disabled>
 					<div class="form-group">
 					</div>
 					<div class="form-group" style="border: 1px solid #eff2f7;">

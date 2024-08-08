@@ -30,21 +30,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO getMemberInfo(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int update(MemberDTO member) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(member);
 	}
 
 	@Override
 	public int delete(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(id);
 	}
 
 	@Override
@@ -61,6 +53,16 @@ public class MemberServiceImpl implements MemberService {
 	public void logout(HttpSession session) {
 		session.invalidate();
 		
+	}
+
+	@Override
+	public MemberDTO findByid(String id) {
+		return dao.findByid(id);
+	}
+
+	@Override
+	public boolean idCheck(String id) {
+		return dao.findByid(id) != null;
 	}
 
 

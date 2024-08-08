@@ -12,9 +12,6 @@ public interface MemberService {
 	// 会員リスト
 	List<MemberDTO> memberlist();
 	
-	// 会員1名検索
-	MemberDTO getMemberInfo(String id);
-	
 	// 会員修正
 	int update(MemberDTO member);
 	
@@ -26,5 +23,11 @@ public interface MemberService {
 	
 	// ログアウト
 	void logout(HttpSession session);
+	
+	// 会員検索
+	MemberDTO findByid(String id);
+	
+	// ID重複チェック
+	boolean idCheck(String id);
 
 }

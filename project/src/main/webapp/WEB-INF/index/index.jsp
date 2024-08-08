@@ -31,6 +31,7 @@
 	<c:choose>
 		<c:when test="${sessionScope.id != null }">
 			<a href="/project/member/logout">로그아웃</a>
+			<a href="/project/member/memread?id=${sessionScope.id}&state=READ">마이페이지</a>
 		</c:when>
 		<c:otherwise>
 			<a href="/project/member/login">로그인</a>
