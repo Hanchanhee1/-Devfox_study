@@ -62,7 +62,7 @@ public class RiplyController {
         dto.setRiply_no(riply_no);
         dto.setRiply_content(riply_content);
         riplyService.update(dto);;
-        return ResponseEntity.ok("댓글이 수정되었습니다.");
+        return ResponseEntity.ok(null);
 	}
 	
 	// コメント削除
@@ -71,7 +71,7 @@ public class RiplyController {
         RiplyDTO dto = new RiplyDTO();
         dto.setRiply_no(riply_no);
         riplyService.delete(dto);
-        return ResponseEntity.ok("댓글이 삭제되었습니다.");
+        return ResponseEntity.ok(null);
     }
 	
 

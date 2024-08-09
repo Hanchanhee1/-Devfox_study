@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,11 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 	
 	MemberService memberService;
+	BCryptPasswordEncoder passEncoder;
 	
 	@Autowired
-	public MemberController(MemberService memberService) {
+	public MemberController(MemberService memberService, BCryptPasswordEncoder passEncoder) {
 		super();
 		this.memberService = memberService;
+		this.passEncoder = passEncoder;
 	}
 	
 	// 会員登録
@@ -41,7 +44,10 @@ public class MemberController {
 		     model.addAttribute("message", "이미 사용 중인 아이디입니다.");
 		     return "member/register";
 		    }
-		    memberService.insert(member);
+		 	// パスワード暗号化
+		 	String encodepw = passEncoder.encode(member.getPw());
+		    member.setPw(encodepw);
+		 	memberService.insert(member);
 		    return "redirect:/";
 	}
 	
@@ -49,11 +55,6 @@ public class MemberController {
 	@RequestMapping("/member/login")
 	public String login() {
 		return "member/login";
-	}
-	
-	@RequestMapping("/member/login2")
-	public String login2() {
-		return "member/login2";
 	}
 	
 	@RequestMapping(value="/member/loginpro" , method = RequestMethod.POST)
@@ -104,7 +105,13 @@ public class MemberController {
 	
 	// 会員修正
 	@RequestMapping(value="/member/updatepro" , method = RequestMethod.POST)
-	public String memupdatepro(MemberDTO member) {
+	public String memupdatepro(@ModelAttribute MemberDTO member) {
+		
+		if(member.getPw() != null && !member.getPw().isEmpty()) {
+			String cpw = passEncoder.encode(member.getPw());
+			member.setPw(cpw);
+		}
+		
 		memberService.update(member);
 		return "redirect:/";
 	}

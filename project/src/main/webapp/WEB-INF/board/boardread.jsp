@@ -91,9 +91,9 @@
             </c:otherwise>
         </c:choose>
 	</form>
-	<div class="prev_next">
+	<div class="prev_next" style="text-align: center;">
 				<a href="/project/board/read?board_no=${prev.board_no}&pageNum=${cri.pageNum}&amount=${cri.amount}&state=READ" class="btn_prev"><i class="fa fa-angle-left"></i>
-				<span class="prev_wrap">
+				<span class="prev_wrap" style="margin-right: 50px;">
 					<strong>이전글</strong><span>${prev.title }</span>
 				</span>
 				</a>
@@ -191,7 +191,7 @@
 	                    url: "/project/riply/delete",
 	                    data: { riply_no: riply_no },
 	                    success: function(response) {
-	                        alert(response);
+	                    	alert("댓글이 삭제되었습니다.");
 	                        listriply();
 	                    },
 	                    error: function() {

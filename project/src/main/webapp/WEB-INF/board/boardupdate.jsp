@@ -31,6 +31,7 @@
 
 				<form class="form-horizontal style-form"
 				 action="/project/board/updatepro"  method="post">
+				 <input type="hidden" name="board_no" value="${board.board_no}">
 					<div class="form-group">
 						<div class="col-md-2 text-right">
 							<label for="id" class="control-label">번호</label>

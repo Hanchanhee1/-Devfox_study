@@ -5,17 +5,20 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 	
 	MemberDAO dao;
+	BCryptPasswordEncoder passEncoder;
 	
 	@Autowired
-	public MemberServiceImpl(MemberDAO dao) {
+	public MemberServiceImpl(MemberDAO dao, BCryptPasswordEncoder passEncoder) {
 		super();
 		this.dao = dao;
+		this.passEncoder = passEncoder;
 	}
 
 	@Override
@@ -41,12 +44,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String login(MemberDTO member, HttpSession session) {
-		String name = dao.login(member);
-		if(name != null) {
-			session.setAttribute("id", member.getId());
-			session.setAttribute(name, name);
+		MemberDTO mem = dao.findByid(member.getId());
+		if(mem != null && passEncoder.matches(member.getPw(), mem.getPw())) {
+			session.setAttribute("id", mem.getId());
+			session.setAttribute("name", mem.getName());
+			return mem.getName();
 		}
-		return name;
+		return null;
 	}
 
 	@Override
