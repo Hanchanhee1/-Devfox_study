@@ -17,6 +17,7 @@
 </script>
 </head>
 <body>
+<div>
 	<h1>게시판</h1>
 		<a href="/project/">홈으로</a>
 		<p>총게시글<span>${pageMaker.total}</span>건</p>
@@ -61,9 +62,9 @@
 		</table>
 
 	<ul class="nav navbar-nav navbar-right">
-			<li><a href="/project/board/write" style="text-align: right;">글쓰기</a></li>
+			<li><a href="/project/board/write" style="margin-left:-64%">글쓰기</a></li>
 	</ul>
-	<div class="paging">
+	<div class="paging" style="text-align:center;">
 			<a href=""><i class="fa  fa-angle-double-left"></i></a>
 			<a href=""><i class="fa fa-angle-left"></i></a>
 			<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
@@ -72,6 +73,6 @@
 			<a href=""><i class="fa fa-angle-right"></i></a>
 			<a href=""><i class="fa  fa-angle-double-right"></i></a>
 		</div>
-
+</div>
 </body>
 </html>

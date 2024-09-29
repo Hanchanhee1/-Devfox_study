@@ -8,6 +8,7 @@
 <title>회원가입</title>
 </head>
 <body>
+<div>
 <h4>회원가입</h4>
 <form name="register_frm" action="/project/member/write" method="post">
     <label for="id">아이디:</label>
@@ -36,5 +37,6 @@
     <br/>
     <input type="submit" value="가입하기" />
 </form>
+</div>
 </body>
 </html>

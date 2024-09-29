@@ -31,6 +31,7 @@
 </style>
 </head>
 <body>
+<div>
 	<a href="/project/">홈으로</a>
 	<form class="form-horizontal" action="/project/board/delete" method="post">
 		<input type="hidden" name="board_no" value="${board.board_no}">
@@ -94,12 +95,12 @@
 	<div class="prev_next" style="text-align: center;">
 				<a href="/project/board/read?board_no=${prev.board_no}&pageNum=${cri.pageNum}&amount=${cri.amount}&state=READ" class="btn_prev"><i class="fa fa-angle-left"></i>
 				<span class="prev_wrap" style="margin-right: 50px;">
-					<strong>이전글</strong><span>${prev.title }</span>
+					<strong>이전글: </strong><span style="color:black;">${prev.title }</span>
 				</span>
 				</a>
 				<a href="/project/board/read?board_no=${next.board_no }&pageNum=${cri.pageNum}&amount=${cri.amount}&state=READ" class="btn_next">
 				<span class="next_wrap">
-					<strong>다음글</strong><span>${next.title }</span>
+					<strong>다음글: </strong><span style="color:black;">${next.title }</span>
 				</span>
 				<i class="fa fa-angle-right"></i></a>
 			</div>
@@ -134,7 +135,7 @@
         </div>
     </div>
 </div>
-
+</div>
 </body>
 
 <script>

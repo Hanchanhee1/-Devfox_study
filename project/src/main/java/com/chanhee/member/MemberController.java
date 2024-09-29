@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -124,7 +125,21 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
+	// パスワードの重複チェック
+	@RequestMapping(value="/member/checkPw", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> checkPw(@RequestParam String id, @RequestParam String checkPw) {
+	    MemberDTO member = memberService.findByid(id);
+	    Map<String, Boolean> response = new HashMap<>();
+	    
+	    if (member != null && passEncoder.matches(checkPw, member.getPw())) {
+	        response.put("exists", true);
+	    } else {
+	        response.put("exists", false);
+	    }
+	    
+	    return response;
+	}
 	
 
 }

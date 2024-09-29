@@ -7,6 +7,7 @@
     <title>마이페이지</title>
 </head>
 <body>
+<div style="text-align:center;">
     <h1>마이페이지</h1>
     <a href="/project/">홈으로</a>
     <form action="/project/member/delete" method="post" onsubmit="return confirm('정말로 삭제하시겠습니까?');">
@@ -25,5 +26,6 @@
     <button type="button" onclick="location.href='/project/member/update?id=${member.id}&state=READ'">수정</button>
     <button type="submit">삭제</button>
     </form>
+    </div>
 </body>
 </html>

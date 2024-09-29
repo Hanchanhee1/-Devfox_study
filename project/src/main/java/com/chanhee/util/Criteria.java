@@ -1,6 +1,5 @@
 package com.chanhee.util;
 
-import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.Getter;
 import lombok.Setter;

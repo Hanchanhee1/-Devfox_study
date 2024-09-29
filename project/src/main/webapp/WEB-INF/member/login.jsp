@@ -13,6 +13,7 @@
     </style>
 </head>
 <body>
+<div style="text-align:center;">
     <h4><i class="fa fa-angle-right"></i> 로그인</h4>
     <a href="/project/">홈으로</a>
     <form name="login_frm" action="/project/member/loginpro" method="post">
@@ -93,5 +94,6 @@
             </tr>
         </table>
     </form>
+    </div>
 </body>
 </html>
