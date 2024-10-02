@@ -54,26 +54,19 @@
 	</update>
 
 	<select id="Paging" resultType="board">
-	
 		<![CDATA[
-        select board_no, id, title, content, riplycount from (
-            select board_no, id, title, content,
-                   (select count(*) from han_riply WHERE board_no = b.board_no) as riplycount,
-                   rownum as rn
-            from han_board b
-            where 
-            1 = 1
-    ]]>
-    
-    <include refid="criteria"></include>
-    
-    <![CDATA[
-            order by board_no desc
-        )
-        where rn > (#{pageNum} - 1) * #{amount}
-          and rn <= #{pageNum} * #{amount}
-    ]]>
-    
+			select board_no,id,title,content,riplycount from (select /*+ index_desc (han_board han_board_pk) */
+			rownum rn,board_no,id,title,content,(select count(*) from han_riply where board_no = board_no) as riplycount
+			from han_board 
+			where
+			]]>
+			
+			<include refid="criteria"></include>
+			
+		<![CDATA[
+			rownum <= #{pageNum} * #{amount})
+			where rn > (#{pageNum}-1) * #{amount}
+		]]>
 	</select>
 
 	<select id="TotalCount" resultType="int">

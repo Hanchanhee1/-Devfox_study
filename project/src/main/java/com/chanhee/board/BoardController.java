@@ -25,7 +25,7 @@ public class BoardController {
 		this.boardService = boardService;
 	}
 	
-	// 掲示板照会
+	// 掲示板リスト
 	@RequestMapping("/board/list")
 	public String list(Criteria cri, Model model ,@RequestParam(value="type", required=false) String type,@RequestParam(value="keyword", required=false) String keyword) {
 		

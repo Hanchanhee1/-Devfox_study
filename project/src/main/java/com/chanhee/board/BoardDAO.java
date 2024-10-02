@@ -19,7 +19,7 @@ public interface BoardDAO {
 	int delete(String board_no);
 	// ページング処理
 	List<BoardDTO> Paging(Criteria cri);
-	// ページング処理
+	// 掲示板の数
 	int TotalCount(Criteria cri);
 	// 前の掲示板
 	BoardDTO prev(String board_no);
