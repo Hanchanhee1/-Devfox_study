@@ -33,7 +33,7 @@
 			method="post" onsubmit="return confirm('수정 하시겠습니까?');">
 			<input type="hidden" name="id" value="${member.id}" /> <label
 				for="pw">비밀번호:</label> <input type="password" name="pw" id="pw"
-				value="${member.pw}" />
+				value="" />
 			<button type="button" onclick="checkPassword()">비밀번호중복체크</button>
 			<br /> <label for="name">이름:</label> <input type="text" name="name"
 				id="name" value="${member.name}" /><br /> <label for="gender">성별:</label>
